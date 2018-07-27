@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="科学上网,goflyway,Proxy-SwitchyOmega," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="goflyway是用golang实现的开源代理软件，基于HTTP协议，比酸酸乳还要好用，类似于酸酸乳的HTTP混淆模式，还具有域名的CDN功能：  对于 HTTP 流量，加密 Host 字段、Cookie 字段和 body，然后转发 对于 HTTPS 流量，goflyway 作为隧道代理再加密一层，防止 SSL 握手网站证书被检测到。当然建立隧道时 Host 也是加密的  流量的加密即采用 AES">
+<meta name="keywords" content="科学上网,goflyway,Proxy-SwitchyOmega">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用goflyway进行科学上网">
+<meta property="og:url" content="http://yoursite.com/2018/05/29/使用goflyway进行科学上网/index.html">
+<meta property="og:site_name" content="TENCHIANG&#39;s blog">
+<meta property="og:description" content="goflyway是用golang实现的开源代理软件，基于HTTP协议，比酸酸乳还要好用，类似于酸酸乳的HTTP混淆模式，还具有域名的CDN功能：  对于 HTTP 流量，加密 Host 字段、Cookie 字段和 body，然后转发 对于 HTTPS 流量，goflyway 作为隧道代理再加密一层，防止 SSL 握手网站证书被检测到。当然建立隧道时 Host 也是加密的  流量的加密即采用 AES">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-27T02:38:51.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用goflyway进行科学上网">
+<meta name="twitter:description" content="goflyway是用golang实现的开源代理软件，基于HTTP协议，比酸酸乳还要好用，类似于酸酸乳的HTTP混淆模式，还具有域名的CDN功能：  对于 HTTP 流量，加密 Host 字段、Cookie 字段和 body，然后转发 对于 HTTPS 流量，goflyway 作为隧道代理再加密一层，防止 SSL 握手网站证书被检测到。当然建立隧道时 Host 也是加密的  流量的加密即采用 AES">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/29/使用goflyway进行科学上网/"/>
+
+
+
+
+
+  <title>使用goflyway进行科学上网 | TENCHIANG's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TENCHIANG's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/使用goflyway进行科学上网/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TENCHIANG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TENCHIANG's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用goflyway进行科学上网</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T00:00:00+08:00">
+                2018-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>goflyway是用golang实现的开源代理软件，基于HTTP协议，比酸酸乳还要好用，类似于酸酸乳的HTTP混淆模式，还具有域名的CDN功能：</p>
+<ul>
+<li>对于 HTTP 流量，加密 Host 字段、Cookie 字段和 body，然后转发</li>
+<li>对于 HTTPS 流量，goflyway 作为隧道代理再加密一层，防止 SSL 握手网站证书被检测到。当然建立隧道时 Host 也是加密的</li>
+</ul>
+<p>流量的加密即采用 AES256，Host 的加密准确的说应为混淆，其只改变二级（或三级、四级。。）域名，例如：</p>
+<ul>
+<li>mtalk.google.com -&gt; mtalk.dwlnfsm6ktuic.com</li>
+<li>trac.i3.dmm.co.jp -&gt; trac.i3.g9dznrnzy.co.jp<br>client 端会区分国内外流量，其判断基于中国的 IP 段和<a href="https://github.com/felixonmars/dnsmasq-china-list" target="_blank" rel="noopener">china-list</a></li>
+</ul>
+<p>因为是基于应用层的 HTTP，传输肯定会有 overhead，性能不用指望，但也不慢多少，cpu 占用略低一些。</p>
+<h2 id="goflyway下载"><a href="#goflyway下载" class="headerlink" title="goflyway下载"></a>goflyway下载</h2><p>去这里下载<a href="https://github.com/coyove/goflyway/releases" target="_blank" rel="noopener">最新版</a>，注意操作系统和平台位数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget  -N --no-check-certificate \</span><br><span class="line">https://github.com/coyove/goflyway/releases/download/v1.2.0a/goflyway_linux_amd64.tar.gz</span><br><span class="line">tar zxf goflyway_linux_amd64.tar.gz</span><br><span class="line">./goflyway -gen-ca <span class="comment"># 生成ca.pem Windows平台改为goflyway.exe</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="加入goflyway到环境变量"><a href="#加入goflyway到环境变量" class="headerlink" title="加入goflyway到环境变量"></a>加入goflyway到环境变量</h3><p>追加环境变量至<code>/etc/profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile <span class="comment"># ~/.bashrc也行 区别是只能单用户</span></span><br><span class="line"><span class="built_in">export</span> GOFLYWAY=/xxx <span class="comment"># goflyway所在的目录</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$GOFLYWAY</span>:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></p>
+<p>即刻生效<code>source /etc/profile</code></p>
+<h2 id="设置goflyway为后台运行"><a href="#设置goflyway为后台运行" class="headerlink" title="设置goflyway为后台运行"></a>设置goflyway为后台运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">touch start.sh</span><br><span class="line">chmod +x start.sh</span><br><span class="line">vim start.sh</span><br><span class="line"><span class="comment"># 输入以下内容</span></span><br><span class="line">nohup goflyway -up=<span class="string">"cf://demo2.goflyway.pw:80"</span> -k=<span class="string">"doub.io"</span> -l=<span class="string">":8100"</span> -web-port=<span class="string">"8101"</span> -lv=dbg &gt; /tmp/goflyway.log 2&gt;&amp;1 &amp;</span><br><span class="line"><span class="comment"># 保存并退出vim</span></span><br><span class="line">./start.sh <span class="comment"># 后台运行goflyway</span></span><br><span class="line">ps aux | grep goflyway <span class="comment"># 查看是否运行成功</span></span><br><span class="line">tail -f /tmp/goflyway.log <span class="comment"># 查看日志(动态)</span></span><br><span class="line">killall goflyway <span class="comment"># 关闭后台goflyway如果提示拒绝访问 在前面加上sudo</span></span><br></pre></td></tr></table></figure>
+<h2 id="goflyway与其它软件的连接通道"><a href="#goflyway与其它软件的连接通道" class="headerlink" title="goflyway与其它软件的连接通道"></a>goflyway与其它软件的连接通道</h2><p>到目前为止，还不能访问404公司的网站，因为goflyway不主动修改代理设置，还得在你要科学上网的软件上进行代理的设置。地址设置为本机地址127.0.0.1，端口设置为8100，代理协议要设置为HTTP，密码帐号置空。有一些软件默认就是HTTP，所以无需特别设置，如IE。</p>
+<h3 id="浏览器端插件Proxy-SwitchyOmega"><a href="#浏览器端插件Proxy-SwitchyOmega" class="headerlink" title="浏览器端插件Proxy SwitchyOmega"></a>浏览器端插件Proxy SwitchyOmega</h3><p>在Chrome或火狐安装<a href="https://www.chromedownloads.net/extensions/472.html" target="_blank" rel="noopener">Proxy SwitchyOmega</a>插件，才能配合goflyway实现科学上网。<br>安装Proxy SwitchyOmega后，在设置里面的<code>情景模式</code>下点<code>proxy</code>，把右边的<code>代理协议</code>、<code>代理服务器</code>、<code>代理端口</code>分别改为<code>HTTP</code>、<code>127.0.0.1</code>、<code>8100</code>，然后点击左下角的<code>应用选项</code>使设置生效，最后点击浏览器上Proxy SwitchyOmega的图标，在弹出的菜单里选择<code>proxy</code>。如果图标颜色是蓝色的说明连接本地代理成功，试试<a href="https://www.google.com吧；如果图标颜色为黄色那么说明还有问题，检查之前的步骤。" target="_blank" rel="noopener">https://www.google.com吧；如果图标颜色为黄色那么说明还有问题，检查之前的步骤。</a></p>
+<h3 id="设置不代理的地址列表"><a href="#设置不代理的地址列表" class="headerlink" title="设置不代理的地址列表"></a>设置不代理的地址列表</h3><p>其实goflyway参数只要不加<code>-g(全局代理)</code>，goflyway本身就可以跳过内网与国内无需代理的地址。访问<code>http://127.0.0.1:8101</code>可以查看哪些网址通过了代理，哪些是直连，<code>Proxy</code>表示通过代理访问的地址，<code>M-Pass</code>表示不需要代理直连的地址；也可以通过<code>tail -f /tmp/goflyway.log</code>查看，只不过参数更加复杂。<br>如果有需要添加特殊的直连地址，进入SwitchyOmega设置的情景模式，选择具体的情景模式，在右边有一个<code>设置不代理的地址列表</code>，仿照这样的格式添加：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1</span><br><span class="line">[::1]</span><br><span class="line">localhost</span><br></pre></td></tr></table></figure></p>
+<h2 id="一键傻瓜式脚本"><a href="#一键傻瓜式脚本" class="headerlink" title="一键傻瓜式脚本"></a>一键傻瓜式脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://softs.loan/Bash/goflyway.sh &amp;&amp; chmod +x goflyway.sh &amp;&amp; bash goflyway.sh</span><br><span class="line"><span class="comment"># 如果上面这个脚本无法下载，尝试使用备用下载：</span></span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/goflyway.sh &amp;&amp; chmod +x goflyway.sh &amp;&amp; bash goflyway.sh</span><br></pre></td></tr></table></figure>
+<p>详细请访问<a href="https://doub.io/goflyway-jc2/" target="_blank" rel="noopener">一个由Go语言编写的轻量化 HTTP Tunnel 代理工具 —— GoFlyway | 逗比根据地</a>(需科学访问)。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/coyove/goflyway/wiki/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">使用教程 · coyove/goflyway Wiki · GitHub</a><br><a href="https://www.v2ex.com/amp/t/389415" target="_blank" rel="noopener">goflyway，一个简单的科学 HTTP 代理工具 - V2EX</a><br><a href="https://www.cnblogs.com/cnnnnnn/p/8453635.html" target="_blank" rel="noopener">Linux 服务器 安装 goflyway - omegablank - 博客园</a><br><a href="https://doub.io/goflyway-jc1/" target="_blank" rel="noopener">一个由Go语言编写的轻量化 HTTP Tunnel 代理工具 —— GoFlyway | 逗比根据地</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/科学上网/" rel="tag"># 科学上网</a>
+          
+            <a href="/tags/goflyway/" rel="tag"># goflyway</a>
+          
+            <a href="/tags/Proxy-SwitchyOmega/" rel="tag"># Proxy-SwitchyOmega</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/29/golang环境搭建/" rel="next" title="golang环境搭建">
+                <i class="fa fa-chevron-left"></i> golang环境搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/04/Windows上的符号链接/" rel="prev" title="Windows上的符号链接">
+                Windows上的符号链接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">TENCHIANG</p>
+              <p class="site-description motion-element" itemprop="description">个人的笔记</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#goflyway下载"><span class="nav-number">1.</span> <span class="nav-text">goflyway下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加入goflyway到环境变量"><span class="nav-number">1.1.</span> <span class="nav-text">加入goflyway到环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置goflyway为后台运行"><span class="nav-number">2.</span> <span class="nav-text">设置goflyway为后台运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#goflyway与其它软件的连接通道"><span class="nav-number">3.</span> <span class="nav-text">goflyway与其它软件的连接通道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器端插件Proxy-SwitchyOmega"><span class="nav-number">3.1.</span> <span class="nav-text">浏览器端插件Proxy SwitchyOmega</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置不代理的地址列表"><span class="nav-number">3.2.</span> <span class="nav-text">设置不代理的地址列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一键傻瓜式脚本"><span class="nav-number">4.</span> <span class="nav-text">一键傻瓜式脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TENCHIANG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

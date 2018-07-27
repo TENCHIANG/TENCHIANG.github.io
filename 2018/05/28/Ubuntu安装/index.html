@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,Ubuntu,安装," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介Ubuntu是基于Debain的免费开源的Linux发行版，其中apt-get方式的软件包管理，以及sudo方式的系统操作，简单、安全、便捷，甚至成为很多人的主力系统，其中Ubuntu Kylin(麒麟)是专为中国用户的使用习惯而开发的，安装与使用方式与Ubuntu无二。本篇文章在介绍各种安装ubuntu方式的同时，也介绍了一些使用Ubuntu时要注意的，比如Ubuntu上面qq使用的解决方案">
+<meta name="keywords" content="Linux,Ubuntu,安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu安装">
+<meta property="og:url" content="http://yoursite.com/2018/05/28/Ubuntu安装/index.html">
+<meta property="og:site_name" content="TENCHIANG&#39;s blog">
+<meta property="og:description" content="简介Ubuntu是基于Debain的免费开源的Linux发行版，其中apt-get方式的软件包管理，以及sudo方式的系统操作，简单、安全、便捷，甚至成为很多人的主力系统，其中Ubuntu Kylin(麒麟)是专为中国用户的使用习惯而开发的，安装与使用方式与Ubuntu无二。本篇文章在介绍各种安装ubuntu方式的同时，也介绍了一些使用Ubuntu时要注意的，比如Ubuntu上面qq使用的解决方案">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-27T02:47:17.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu安装">
+<meta name="twitter:description" content="简介Ubuntu是基于Debain的免费开源的Linux发行版，其中apt-get方式的软件包管理，以及sudo方式的系统操作，简单、安全、便捷，甚至成为很多人的主力系统，其中Ubuntu Kylin(麒麟)是专为中国用户的使用习惯而开发的，安装与使用方式与Ubuntu无二。本篇文章在介绍各种安装ubuntu方式的同时，也介绍了一些使用Ubuntu时要注意的，比如Ubuntu上面qq使用的解决方案">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/28/Ubuntu安装/"/>
+
+
+
+
+
+  <title>Ubuntu安装 | TENCHIANG's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TENCHIANG's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/Ubuntu安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TENCHIANG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TENCHIANG's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ubuntu安装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Ubuntu是基于Debain的免费开源的Linux发行版，其中apt-get方式的软件包管理，以及sudo方式的系统操作，简单、安全、便捷，甚至成为很多人的主力系统，其中Ubuntu Kylin(麒麟)是专为中国用户的使用习惯而开发的，安装与使用方式与Ubuntu无二。本篇文章在介绍各种安装ubuntu方式的同时，也介绍了一些使用Ubuntu时要注意的，比如Ubuntu上面qq使用的解决方案、换源、更新软件等问题。</p>
+<h2 id="使用wubi-exe安装-Ubuntu14及以前版本"><a href="#使用wubi-exe安装-Ubuntu14及以前版本" class="headerlink" title="使用wubi.exe安装(Ubuntu14及以前版本)"></a>使用wubi.exe安装(Ubuntu14及以前版本)</h2><p>现在没有wubi了是因为随着系统更新，这种安装方式存在很多bug，所以Ubuntu14以后就不支持这种方式安装了。这种安装方式的优点非常方便，能把Ubuntu像软件一样安装与卸载，并能够与Windows系统和谐共存形成双系统；缺点就是只能使用14或之前的版本。</p>
+<ul>
+<li>下载<a href="http://old-releases.ubuntu.com/releases/14.04.2/ubuntu-14.04.1-desktop-amd64.iso" target="_blank" rel="noopener"><code>ubuntu-14.04.2-desktop-amd64.iso</code></a>，并把里面的wubi.exe解压出来放在iso文件的同级目录。</li>
+<li>打开<code>wubi.exe</code>，设置用户名和口令进行安装，对同级的iso文件进行处理(只支持14.04.2这个版本)。处理完成后会提醒是否立即重启，选择立即重启。接下来系统就会进入到Ubuntu系统的安装了。</li>
+<li><p>安装完成后，系统重启就可以进行双系统的选择进入。</p>
+<h3 id="为-检查磁盘时出现严重错误"><a href="#为-检查磁盘时出现严重错误" class="headerlink" title="为/检查磁盘时出现严重错误"></a>为/检查磁盘时出现严重错误</h3><p>如果安装后启动界面出现<code>为/检查磁盘时出现严重错误</code>的提醒：</p>
+</li>
+<li><p>首先，进入Ubuntu启动菜单时，按键盘上的<code>e</code>键，即可进入启动项编辑模式。将<code>ro</code>改成<code>rw</code> 后，按<code>F10</code>键，即可按照修改后的参数引导进入系统。</p>
+</li>
+<li><p>然后，进入系统后，使用快捷键<code>shift+alt+t</code>打开终端输入<code>sudo gedit /etc/grub.d/10_lupin</code>后回车,即可调用文本编辑器打开启动项配置文件。在打开的编辑中搜索<code>ro ${args}</code>并定位到该文字项。将定位位置的<code>ro</code>修改为<code>rw</code>，然后保存并退出文本编辑器。再在终端输入<code>sudo update-grub</code>更新启动项配置，下次启动就不会看到这个提示了。</p>
+<h3 id="鼠标闪烁"><a href="#鼠标闪烁" class="headerlink" title="鼠标闪烁"></a>鼠标闪烁</h3><p>进入桌面后如果有鼠标闪烁的问题，有的时候鼠标都看不到：</p>
+</li>
+<li><p>进入<code>控制面板-&gt;显示</code>把未知屏幕关掉就行。</p>
+</li>
+<li><p>建议不管是什么版本，都把未知屏幕都关掉，只保留一个屏幕。</p>
+<h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><p>官方提供的源很慢，14的老版本有的地址都404失效了：</p>
+</li>
+<li><p><code>cp /etc/apt/sources.list /etc/apt/sources.list.bak</code>备份源文件</p>
+</li>
+<li><code>sudo gedit /etc/apt/sources.list</code>编辑源文件，把国内的源地址任选一组粘贴进去之后保存</li>
+<li><code>sudo apt-get update</code>更新源</li>
+<li><code>sudo apt-get upgrade</code></li>
+</ul>
+<blockquote>
+<p>UPDATE: update is used to download package information from all configured sources.<br>UPGRADE: upgrade is used to install available upgrades of all packages currently installed on the system from the sources configured via sources.list</p>
+</blockquote>
+<h2 id="源版本注意"><a href="#源版本注意" class="headerlink" title="源版本注意"></a>源版本注意</h2><p>注意源的版本跟系统的版本要一致，如<code>deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</code>中的<code>bionic</code>表示的是ubuntu18版本的源，如果ubuntu14要用，需要替换为<code>trusty</code>，不然软件安装升级时会出错误。一些系统版本代号：</p>
+<ul>
+<li>18.04 bionic</li>
+<li>17.10 artful</li>
+<li>16.04 xenial</li>
+<li>14.04 trusty</li>
+</ul>
+<p>一些国内的源:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 中科大源</span></span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">```  </span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 阿里源</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">```  </span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 163源</span></span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">```  </span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 清华源</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="comment">## 通过虚拟机安装至U盘</span></span><br><span class="line">理论上可以通过虚拟机给U盘安装任何系统。安装很方便，缺点是U盘速度不给力，系统运行体验肯定不如安装在硬盘。不过可以试试在虚拟机挂一个空硬盘安装试试。</span><br><span class="line"></span><br><span class="line">* 准备好USB3.0最好是16G或以上的空U盘</span><br><span class="line">* 下载任意版本的[Ubuntu](http://releases.ubuntu.com/16.04/)</span><br><span class="line">* 下载并安装最新版本的虚拟机[VirtualBox](https://download.virtualbox.org/virtualbox/5.2.12/VirtualBox-5.2.12-122591-Win.exe)</span><br><span class="line">* 打开并设置虚拟机`管理-&gt;全局设定`</span><br><span class="line">    * 在`扩展`里，添加虚拟机插件[Oracle VM VirtualBox Extension Pack](https://download.virtualbox.org/virtualbox/5.2.12/Oracle_VM_VirtualBox_Extension_Pack-5.2.12-122591.vbox-extpack)</span><br><span class="line">    * 在`显示`里，最大屏幕尺寸选择`提示`，宽高选择电脑屏幕实际的宽高(太小安装系统的时候有的菜单都看不到)</span><br><span class="line">* 新建虚拟机</span><br><span class="line">    * 名称输入`ubuntu`，版本会自动选择`Ubuntu (64-bit)`</span><br><span class="line">    * 内存选择`2048M`</span><br><span class="line">    * 不添加虚拟硬盘</span><br><span class="line">* 设置已新建好的虚拟机</span><br><span class="line">    * 右键虚拟机点设置</span><br><span class="line">    * `设置-&gt;存储-&gt;控制器: IDE`，右键添加虚拟光驱，选择ubuntu的iso文件</span><br><span class="line">* 安装ubuntu</span><br><span class="line">    * 运行虚拟机，出现菜单见面时，拖动右侧的滑块到最下面选择中文，点击右侧的安装Ubuntu</span><br><span class="line">    * 到安装类型的时候，要选择自己分区</span><br><span class="line">        * 先删除u盘所有的分区，然后新建分区(挂载点)</span><br><span class="line">        * /boot，格式ext4，500m</span><br><span class="line">        * /，格式ext4，5000m</span><br><span class="line">        * /home，格式ext4， 5000m</span><br><span class="line">        * /dos，格式fat32，剩余空间(这个可以做普通的u盘空间使用)</span><br><span class="line">        * 这里没有设置交换分区，因为是u盘，速度慢</span><br><span class="line">* 安装完成后要注意的</span><br><span class="line">    * 安装完成后会提示重启，这时候拔掉U盘就行了。然后就可以在任何一台电脑上使用ubuntu系统了</span><br><span class="line">    * 重启电脑后，狂按`F7~F12`，进入启动菜单选择U盘，或者按F2或ESC或del键进入BIOS进行固定的设置</span><br><span class="line">    * 如果在boot manager里面找不到自己的U盘选项，可能是因为一下原因：</span><br><span class="line">        * bios设置里面没有打开usb boot选项，找到相应的选项将usb boot设置为 <span class="built_in">enable</span>。</span><br><span class="line">        * bios引导设置里只支持uefi，可以打开legacy启动模式，然后重启电脑再进boot manager应该就能看到U盘了。</span><br><span class="line"></span><br><span class="line"><span class="comment">## 安装软件出错</span></span><br><span class="line">首先查看源的版本，如果源的版本没问题的话，看看是安装哪些软件时出的错误，尝试下面包括但不限于的代码: </span><br><span class="line">```bash</span><br><span class="line"><span class="built_in">cd</span> /var/lib/dpkg</span><br><span class="line">sudo mv info info.bak</span><br><span class="line">sudo mkdir info </span><br><span class="line">sudo apt-get clean</span><br><span class="line">sudo apt-get install -f</span><br></pre></td></tr></table></figure></p>
+<h2 id="ubuntu14-04拼音输入法无法正常输入"><a href="#ubuntu14-04拼音输入法无法正常输入" class="headerlink" title="ubuntu14.04拼音输入法无法正常输入"></a>ubuntu14.04拼音输入法无法正常输入</h2><p>这个大概是其一个bug，在单拼模式下却运行的是双拼，我们只需要在终端输入：<code>sudo ibus-daemon -drx</code>，或者更新输入法也可以解决问题。</p>
+<h2 id="鼠标点击文字会删除文字"><a href="#鼠标点击文字会删除文字" class="headerlink" title="鼠标点击文字会删除文字"></a>鼠标点击文字会删除文字</h2><p>这是ibus输入法框架的一个bug。在文字编辑时，鼠标点击文字会删除文字，对于编辑文字很不方便。</p>
+<ul>
+<li>打开控制台输入<code>sudo ibus-setup</code>，然后在弹出框上将  “在应用程序窗口中启用内嵌编辑模式“ 的勾选选项取消。这样就ok了。</li>
+<li>或者试试这个<code>ibus-daemon -drx</code></li>
+</ul>
+<h2 id="查看所有已装的软件"><a href="#查看所有已装的软件" class="headerlink" title="查看所有已装的软件"></a>查看所有已装的软件</h2><p>有两种方式：</p>
+<ol>
+<li><code>Win+a</code>点击<code>已安装</code></li>
+<li><code>sudo apt install pcmanfm</code>安装<code>文件管理器 PCManFM</code>，打开左侧<code>应用程序</code></li>
+</ol>
+<h2 id="自由截图"><a href="#自由截图" class="headerlink" title="自由截图"></a>自由截图</h2><p><code>gnome-screenshot -a</code>，其中<code>-a</code>表示自由截图，把这个命令添加至键盘快捷键：</p>
+<ul>
+<li><code>全部设置</code>-&gt;<code>键盘</code>-&gt;<code>快捷键</code>，点<code>+</code>号添加自定义快捷键，名称填<code>自由截图</code>，命令填<code>gnome-screenshot -a</code>，点<code>确定</code></li>
+<li>点击<code>自定义快捷键</code>-&gt;<code>自由截图</code>，点击右边的<code>禁用</code>，当<code>禁用</code>变成<code>新建加速键</code>时，在键盘上按下自己设定的组合键，如<code>Ctrl+Alt+J</code></li>
+<li>试一试<code>Ctrl+Alt+J</code>进行自由截图吧</li>
+</ul>
+<h2 id="安装jdk环境"><a href="#安装jdk环境" class="headerlink" title="安装jdk环境"></a>安装jdk环境</h2><ul>
+<li><code>java -version</code>看看有没有安装</li>
+<li>去<a href="http://www.oracle.com/technetwork/cn/java/javase/downloads/index.html" target="_blank" rel="noopener">官网</a>下载最新版jdk</li>
+<li><code>tar xzf jdk-xxx_linux-x64_bin.tar.gz</code>解压jdk包</li>
+<li><p><code>sudo gedit /etc/profile</code>修改环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/xxx/jdkxxx <span class="comment"># 改为jdk所在的目录</span></span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>source /etc/profile</code>立刻生效，注意PATH重复问题</p>
+</li>
+<li><code>java -version</code>看看有没有安装</li>
+<li>注意不要把jdk放在包含中文或者空格的目录下，也不要在这样的目录下运行jdk相关的程序。</li>
+</ul>
+<h2 id="安装notepadqq"><a href="#安装notepadqq" class="headerlink" title="安装notepadqq"></a>安装notepadqq</h2><p>Windows版本的notepad++，Linux上有一个替代品叫natepadqq。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo add-apt-repository ppa:notepadqq-team/notepadqq</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install notepadqq</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sudo apt-get remove notepadqq</span><br><span class="line">sudo add-apt-repository --remove ppa:notepadqq-team/notepadqq</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装Sublime"><a href="#安装Sublime" class="headerlink" title="安装Sublime"></a>安装Sublime</h2><p>去<a href="https://www.sublimetext.com/3" target="_blank" rel="noopener">官网</a>下载最新版本，解压<code>tar jxf sublime_text_3_build_3176_x64.tar.bz2</code>，把解压后的文件夹<code>sublime_text_3</code>移动到你想要的位置。编辑桌面文件<code>sublime_text.desktop</code>，相当于Windows的桌面图标快捷方式的结合。把里面的地址都替换为现在的地址(默认路径为<code>/opt/sublime_text/sublime_text</code>)，或这直接放到默认路径就不用修改文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> sublime_text_3</span><br><span class="line">gedit sublime_text.desktop</span><br></pre></td></tr></table></figure></p>
+<p>把这个文件拖到左侧的Dock栏作为快捷方式，点击这个文件即可打开sublime。</p>
+<h3 id="另外的安装方法"><a href="#另外的安装方法" class="headerlink" title="另外的安装方法"></a>另外的安装方法</h3><p>默认安装路径：<code>/opt/sublime_text/sublime_text</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/sublime-text-3</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text-installer</span><br></pre></td></tr></table></figure></p>
+<h3 id="Sublime无法输入中文"><a href="#Sublime无法输入中文" class="headerlink" title="Sublime无法输入中文"></a>Sublime无法输入中文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/lyfeyaj/sublime-text-imfix.git</span><br><span class="line"><span class="built_in">cd</span> sublime-text-imfix</span><br><span class="line">./sublime-imfix</span><br></pre></td></tr></table></figure>
+<h3 id="sublime更多使用技巧"><a href="#sublime更多使用技巧" class="headerlink" title="sublime更多使用技巧"></a>sublime更多使用技巧</h3><p><a href="https://www.linuxidc.com/Linux/2017-08/146052.htm" target="_blank" rel="noopener">Linux下安装Sublime Text 3并将快捷方式固定到启动器中_Linux教程_Linux公社-Linux系统门户网站</a><br><a href="https://blog.csdn.net/coding99/article/details/52421337" target="_blank" rel="noopener">ubuntu安装sublime详细教程 - CSDN博客</a></p>
+<h2 id="PATH全局路径重复"><a href="#PATH全局路径重复" class="headerlink" title="PATH全局路径重复"></a>PATH全局路径重复</h2><h3 id="PATH在什么情况下重复"><a href="#PATH在什么情况下重复" class="headerlink" title="PATH在什么情况下重复"></a>PATH在什么情况下重复</h3><p>在同一个登录下，运行过多次<code>export PATH=xxx:$PATH</code>，这些命令可能在<code>/etc/profile</code>或者<code>~/.bashrc</code>里面，通过<code>source</code>运行。</p>
+<h3 id="查看PATH是否重复"><a href="#查看PATH是否重复" class="headerlink" title="查看PATH是否重复"></a>查看PATH是否重复</h3><p><code>echo $PATH</code>或<code>env</code></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>把下面代码放入<code>/etc/profile</code>最后：<br><code>export PATH=$(echo $PATH | tr : &quot;\n&quot;| sort | uniq | tr &quot;\n&quot; :)</code></p>
+<h2 id="Ubuntu版本的区别"><a href="#Ubuntu版本的区别" class="headerlink" title="Ubuntu版本的区别"></a>Ubuntu版本的区别</h2><ul>
+<li><code>Desktop</code>就是<code>Live CD</code>相当于用ghost盘安装系统，所有已装软件、分区等都是固定的，可以进行免安装体验</li>
+<li><code>Alternate</code>是标准安装盘，可以分区、定制安装的软件等，上面放的DEB的软件包，安装时要解压、配置</li>
+<li><code>Server</code>只有命令界面用来做server</li>
+</ul>
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo gedit /etc/nginx/sites-available/default <span class="comment"># 修改网站配置文件</span></span><br><span class="line"><span class="comment"># 把root改为其它目录(网站根目录)，默认是/usr/share/nginx/html/</span></span><br><span class="line">sudo service nginx start <span class="comment"># 启动nginx</span></span><br><span class="line">sudo /etc/init.d/nginx start <span class="comment"># 启动nginx</span></span><br></pre></td></tr></table></figure>
+<h3 id="403-Forbidden"><a href="#403-Forbidden" class="headerlink" title="403 Forbidden"></a>403 Forbidden</h3><ul>
+<li>没有首页如<code>index.html</code></li>
+<li>权限问题<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xxx <span class="comment"># 进入网站根目录</span></span><br><span class="line">ps aux | grep nginx <span class="comment"># 一般是www-data</span></span><br><span class="line">chown -R www-data:www-data . <span class="comment"># 修改权限</span></span><br><span class="line">sudo chmod -R 777 . <span class="comment"># 别的用户也能够修改</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>全局：<code>/etc/profile</code>、<code>/etc/bash.bashrc</code>、<code>/etc/bashrc</code><br>单用户：<code>~/.bashrc</code>、<code>~/.bash_profile</code><br>使用<code>env</code>命令可以显示所有的环境变量</p>
+<h3 id="修改环境变量有3种方法"><a href="#修改环境变量有3种方法" class="headerlink" title="修改环境变量有3种方法"></a>修改环境变量有3种方法</h3><ul>
+<li>在/etc/profile文件中添加变量【对所有用户生效(永久的)】</li>
+<li><p>在用户目录下的~/.bash_profile文件中增加变量【对单一用户生效(永久的)】</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例如：编辑/etc/profile文件，添加CLASSPATH变量</span></span><br><span class="line">sudo vi /etc/profile</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=./JAVA_HOME/lib;<span class="variable">$JAVA_HOME</span>/jre/lib</span><br><span class="line"><span class="comment"># 注：修改文件后要想马上生效还要运行`source /etc/profile`不然只能在下次重进此用户时生效</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接运行export命令定义变量【只对当前shell(BASH)有效(临时的)】</p>
+</li>
+</ul>
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar Jxf *.xz</span><br><span class="line">tar zxf *.tar.gz <span class="comment"># 或*.tgz</span></span><br><span class="line">tar jxf *.bz2</span><br><span class="line">unzip *.zip</span><br></pre></td></tr></table></figure>
+<h2 id="使用dpkg安装deb包"><a href="#使用dpkg安装deb包" class="headerlink" title="使用dpkg安装deb包"></a>使用dpkg安装deb包</h2><p>如果ubuntu要安装新软件，已有deb安装包（例如：iptux.deb），但是无法登录到桌面环境。那该怎么安装？答案是：使用dpkg命令。<br>dpkg命令常用格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -I iptux.deb <span class="comment">#查看iptux.deb软件包的详细信息，包括软件名称、版本以及大小等（其中-I等价于--info）</span></span><br><span class="line">sudo dpkg -c iptux.deb <span class="comment">#查看iptux.deb软件包中包含的文件结构（其中-c等价于--contents）</span></span><br><span class="line">sudo dpkg -i iptux.deb <span class="comment">#安装iptux.deb软件包（其中-i等价于--install）</span></span><br><span class="line">sudo dpkg -l iptux <span class="comment">#查看iptux软件包的信息（软件名称可通过dpkg -I命令查看，其中-l等价于--list）</span></span><br><span class="line">sudo dpkg -L iptux <span class="comment">#查看iptux软件包安装的所有文件（软件名称可通过dpkg -I命令查看，其中-L等价于--listfiles）</span></span><br><span class="line">sudo dpkg -s iptux <span class="comment">#查看iptux软件包的详细信息（软件名称可通过dpkg -I命令查看，其中-s等价于--status）</span></span><br><span class="line">sudo dpkg -r iptux <span class="comment">#卸载iptux软件包（软件名称可通过dpkg -I命令查看，其中-r等价于--remove）</span></span><br></pre></td></tr></table></figure></p>
+<p>注：dpkg命令无法自动解决依赖关系。如果安装的deb包存在依赖包，则应避免使用此命令，或者按照依赖关系顺序安装依赖包。</p>
+<h2 id="百度网盘下载"><a href="#百度网盘下载" class="headerlink" title="百度网盘下载"></a>百度网盘下载</h2><p><code>sudo apt-get install axel ariar2c</code></p>
+<h3 id="python的bypy"><a href="#python的bypy" class="headerlink" title="python的bypy"></a>python的bypy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3</span><br><span class="line">sudo apt-get install python3-pip</span><br><span class="line">sudo pip3 install bypy</span><br></pre></td></tr></table></figure>
+<h2 id="安装输入法"><a href="#安装输入法" class="headerlink" title="安装输入法"></a>安装输入法</h2><p>自带的输入法框架是<code>ibus</code>，自带的输入法真的不好用，换成<code>sudo apt-get install ibus-sunpinyin</code>，去右上角切换吧。</p>
+<h3 id="切换输入fcitx法框架，安装搜狗输入法"><a href="#切换输入fcitx法框架，安装搜狗输入法" class="headerlink" title="切换输入fcitx法框架，安装搜狗输入法"></a>切换输入fcitx法框架，安装搜狗输入法</h3><ul>
+<li><p>进入搜狗<a href="https://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="noopener">官网</a>下载linux版搜狗输入法的deb包，然后再安装fcitx: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:fcitx-team/nightly</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text-installer</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在终端安装命令<code>sudo dpkg -i xxx.deb</code>，或者双击deb</p>
+</li>
+<li>恢复依赖关系输入<code>sudo apt-get install -f</code></li>
+<li>接下来要更改键盘的输入方式，把iBus改为fcitx，这里有两种方式<ul>
+<li>一种可以在system settings -&gt; language support -&gt; keyboard input method system下更改</li>
+<li>还可以在终端中输入im-config，出现的对话框把iBus改为fcitx，其他直接ok.</li>
+</ul>
+</li>
+<li><code>log out</code>重启电脑，或者ubuntu（如果在虚拟机中直接重启一下虚拟机即可）</li>
+<li>终端输入<code>fcitx-conig-gtk3</code>, 这里弹出的对话框在左下方<code>+</code>处添加新装的sogou pinyin，去掉<code>only show current language</code>，然后搜索<code>sogou pinyin</code>, <code>ok</code>添加。</li>
+<li>添加之后把它放在对话框出现的最下方，即为默认输入法。</li>
+<li>在ubuntu的又上方小键盘中就能找到“搜狗输入”，安装成功。</li>
+</ul>
+<h2 id="安装音乐播放器Deadbeef"><a href="#安装音乐播放器Deadbeef" class="headerlink" title="安装音乐播放器Deadbeef"></a>安装音乐播放器Deadbeef</h2><p>去<a href="http://deadbeef.sourceforge.net/download.html" target="_blank" rel="noopener">官网</a>下载<code>Binary Builds</code>二进制版本：</p>
+<ul>
+<li>DeaDBeeF x.x.x static portable build i686 为32位</li>
+<li>DeaDBeeF x.x.x static portable build x86_64 为64位</li>
+</ul>
+<p>解压安装：<code>tar jxf deadbeef-static_xxx.tar.bz2</code></p>
+<h2 id="FAT32、NTFS文件增、删、改、查"><a href="#FAT32、NTFS文件增、删、改、查" class="headerlink" title="FAT32、NTFS文件增、删、改、查"></a>FAT32、NTFS文件增、删、改、查</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/kevinbetterq/article/details/51254817" target="_blank" rel="noopener">使用wubi安装双系统（Ubuntu） - CSDN博客</a><br><a href="https://blog.csdn.net/xiangxianghehe/article/details/80112149" target="_blank" rel="noopener">Ubuntu 18.04换国内源 中科大源 阿里源 163源 清华源 - CSDN博客</a><br><a href="https://blog.csdn.net/qq_24369113/article/details/53179218" target="_blank" rel="noopener">将Linux（ubuntu）安装到U盘上，实现即插即用 - CSDN博客</a><br><a href="http://wiki.ubuntu.org.cn/源列表" target="_blank" rel="noopener">源列表 - Ubuntu中文</a><br><a href="https://blog.csdn.net/wzg201" target="_blank" rel="noopener">wzg201的专栏 - CSDN博客</a><br><a href="https://www.cnblogs.com/zalmon/p/6897240.html" target="_blank" rel="noopener">Ubuntu怎样进行自由截图操作 - 大脸萌 - 博客园</a><br><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=422975" target="_blank" rel="noopener">怎样显示已安装的全部应用程序？ - 查看主题 • Ubuntu中文论坛</a><br><a href="https://blog.csdn.net/changjiang352/article/details/8491310" target="_blank" rel="noopener">ubuntu desktop cd、server、alternate三个版本的区别 - CSDN博客</a><br><a href="https://blog.csdn.net/changjiang352/article/details/8498694" target="_blank" rel="noopener">设置linux环境变量 - CSDN博客</a><br><a href="https://blog.csdn.net/chenzhengfeng/article/details/78246483" target="_blank" rel="noopener">Ubuntu下如何用命令行运行deb安装包 - CSDN博客</a><br><a href="https://blog.csdn.net/STFPHP/article/details/53492723" target="_blank" rel="noopener">Ubuntu 16.04 下快速搭建 LNMP环境 - CSDN博客</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          
+            <a href="/tags/安装/" rel="tag"># 安装</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/26/用原生javascript写ajax/" rel="next" title="用原生javascript写ajax">
+                <i class="fa fa-chevron-left"></i> 用原生javascript写ajax
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/29/golang环境搭建/" rel="prev" title="golang环境搭建">
+                golang环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">TENCHIANG</p>
+              <p class="site-description motion-element" itemprop="description">个人的笔记</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用wubi-exe安装-Ubuntu14及以前版本"><span class="nav-number">2.</span> <span class="nav-text">使用wubi.exe安装(Ubuntu14及以前版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为-检查磁盘时出现严重错误"><span class="nav-number">2.1.</span> <span class="nav-text">为/检查磁盘时出现严重错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鼠标闪烁"><span class="nav-number">2.2.</span> <span class="nav-text">鼠标闪烁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换源"><span class="nav-number">2.3.</span> <span class="nav-text">换源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源版本注意"><span class="nav-number">3.</span> <span class="nav-text">源版本注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu14-04拼音输入法无法正常输入"><span class="nav-number">4.</span> <span class="nav-text">ubuntu14.04拼音输入法无法正常输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标点击文字会删除文字"><span class="nav-number">5.</span> <span class="nav-text">鼠标点击文字会删除文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看所有已装的软件"><span class="nav-number">6.</span> <span class="nav-text">查看所有已装的软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自由截图"><span class="nav-number">7.</span> <span class="nav-text">自由截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装jdk环境"><span class="nav-number">8.</span> <span class="nav-text">安装jdk环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装notepadqq"><span class="nav-number">9.</span> <span class="nav-text">安装notepadqq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Sublime"><span class="nav-number">10.</span> <span class="nav-text">安装Sublime</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#另外的安装方法"><span class="nav-number">10.1.</span> <span class="nav-text">另外的安装方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sublime无法输入中文"><span class="nav-number">10.2.</span> <span class="nav-text">Sublime无法输入中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sublime更多使用技巧"><span class="nav-number">10.3.</span> <span class="nav-text">sublime更多使用技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PATH全局路径重复"><span class="nav-number">11.</span> <span class="nav-text">PATH全局路径重复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH在什么情况下重复"><span class="nav-number">11.1.</span> <span class="nav-text">PATH在什么情况下重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看PATH是否重复"><span class="nav-number">11.2.</span> <span class="nav-text">查看PATH是否重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">11.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu版本的区别"><span class="nav-number">12.</span> <span class="nav-text">Ubuntu版本的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nginx"><span class="nav-number">13.</span> <span class="nav-text">安装nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#403-Forbidden"><span class="nav-number">13.1.</span> <span class="nav-text">403 Forbidden</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-number">14.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改环境变量有3种方法"><span class="nav-number">14.1.</span> <span class="nav-text">修改环境变量有3种方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解压"><span class="nav-number">15.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用dpkg安装deb包"><span class="nav-number">16.</span> <span class="nav-text">使用dpkg安装deb包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百度网盘下载"><span class="nav-number">17.</span> <span class="nav-text">百度网盘下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python的bypy"><span class="nav-number">17.1.</span> <span class="nav-text">python的bypy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装输入法"><span class="nav-number">18.</span> <span class="nav-text">安装输入法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换输入fcitx法框架，安装搜狗输入法"><span class="nav-number">18.1.</span> <span class="nav-text">切换输入fcitx法框架，安装搜狗输入法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装音乐播放器Deadbeef"><span class="nav-number">19.</span> <span class="nav-text">安装音乐播放器Deadbeef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAT32、NTFS文件增、删、改、查"><span class="nav-number">20.</span> <span class="nav-text">FAT32、NTFS文件增、删、改、查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">21.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TENCHIANG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

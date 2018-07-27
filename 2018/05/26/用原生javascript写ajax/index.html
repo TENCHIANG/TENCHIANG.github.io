@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,ajax," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原生ajax请求写法1234567891011121314151617181920var xhr = new XMLHttpRequest();var products = null; // 全部商品 包括类型var pp = []; // 全部商品 平行的xhr.onreadystatechange = function()&amp;#123;	if (this.readyState === 4)		i">
+<meta name="keywords" content="javascript,ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用原生javascript写ajax">
+<meta property="og:url" content="http://yoursite.com/2018/05/26/用原生javascript写ajax/index.html">
+<meta property="og:site_name" content="TENCHIANG&#39;s blog">
+<meta property="og:description" content="原生ajax请求写法1234567891011121314151617181920var xhr = new XMLHttpRequest();var products = null; // 全部商品 包括类型var pp = []; // 全部商品 平行的xhr.onreadystatechange = function()&amp;#123;	if (this.readyState === 4)		i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-27T02:42:14.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用原生javascript写ajax">
+<meta name="twitter:description" content="原生ajax请求写法1234567891011121314151617181920var xhr = new XMLHttpRequest();var products = null; // 全部商品 包括类型var pp = []; // 全部商品 平行的xhr.onreadystatechange = function()&amp;#123;	if (this.readyState === 4)		i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/26/用原生javascript写ajax/"/>
+
+
+
+
+
+  <title>用原生javascript写ajax | TENCHIANG's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TENCHIANG's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/用原生javascript写ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TENCHIANG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TENCHIANG's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用原生javascript写ajax</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T00:00:00+08:00">
+                2018-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="原生ajax请求写法"><a href="#原生ajax请求写法" class="headerlink" title="原生ajax请求写法"></a>原生ajax请求写法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> products = <span class="literal">null</span>; <span class="comment">// 全部商品 包括类型</span></span><br><span class="line"><span class="keyword">var</span> pp = []; <span class="comment">// 全部商品 平行的</span></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.readyState === <span class="number">4</span>)</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>)&#123;</span><br><span class="line">			products = <span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.responseText);</span><br><span class="line">			products.map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="comment">// 遍历类别</span></span><br><span class="line">				pp = pp.concat(x.fetch); <span class="comment">// 这才是平行的添加 push是整体包括容器也一起添加了</span></span><br><span class="line">				<span class="keyword">return</span> x.fetch.map(<span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123; <span class="comment">// 遍历单类别产品</span></span><br><span class="line">					y.count = <span class="number">4</span>; <span class="comment">// 给产品增加一个属性</span></span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'Request was successful: '</span> + xhr.status);</span><br><span class="line">		&#125;<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'Request was unsuccessful: '</span> + xhr.status);</span><br><span class="line">&#125;;</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="string">'//api'</span>, <span class="literal">false</span>); <span class="comment">// 这里false表示不使用异步，如果使用异步非阻塞的话会导致取不到数据 这里还有跨域的问题</span></span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-type'</span>, <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>); <span class="comment">// 这个头部设置很重要，不然服务器不会返回想要的数据</span></span><br><span class="line">xhr.send(<span class="string">'arg=unified'</span>); <span class="comment">// 参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="XMLHttpRequest对象的属性"><a href="#XMLHttpRequest对象的属性" class="headerlink" title="XMLHttpRequest对象的属性"></a>XMLHttpRequest对象的属性</h3><h4 id="onreadystatechange"><a href="#onreadystatechange" class="headerlink" title="onreadystatechange"></a>onreadystatechange</h4><p>存储函数或函数名，每当readyState属性改变时，就会调用该函数。</p>
+<h4 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h4><p>存有XMLHttpRequest的状态类，0-4的取值范围。</p>
+<ul>
+<li>0：初始化，XMLHttpRequest对象还没有完成初始化</li>
+<li>1：载入，XMLHttpRequest对象开始发送请求</li>
+<li>2：载入完成，XMLHttpRequest对象的请求发送完成，已收到全部响应内容但尚未解析</li>
+<li>3：解析，XMLHttpRequest对象开始解析服务器的响应内容</li>
+<li>4：完成，XMLHttpRequest对象读取服务器响应结束<h4 id="status"><a href="#status" class="headerlink" title="status"></a>status</h4></li>
+<li>200: OK</li>
+<li>404: 未找到页面</li>
+</ul>
+<h2 id="异步ajax"><a href="#异步ajax" class="headerlink" title="异步ajax"></a>异步ajax</h2><h2 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h2><h2 id="数组与对象的合并"><a href="#数组与对象的合并" class="headerlink" title="数组与对象的合并"></a>数组与对象的合并</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><ul>
+<li><p>concat</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], c = a.concat(b);</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// 1,2,3,4,5,6 concat是平行的合并 返回一个新的合并后的数组</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1,2,3 concat不改变数组本身</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>push</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], c = a.push(b);</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// 4 push返回合并后数组的个数</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [1, 2, 3, [4, 5, 6]] push是整体的合并且改变了原来的数组</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>apply</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], c = <span class="built_in">Array</span>.prototype.push.apply(a, b); </span><br><span class="line"><span class="comment">// 或var c =  a.push.apply(a, b);</span></span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// 6 apply返回合并后数组的个数</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1,2,3,4,5,6 apply改变数组本身</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>返回值</th>
+<th>是否改变原值</th>
+<th>是否平行合并</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>concat</td>
+<td>合并后新的数组</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>push</td>
+<td>合并后元素个数</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>apply</td>
+<td>合并后元素个数</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ul>
+<li><p>assign</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;, o2 = &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;, o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;, obj = <span class="built_in">Object</span>.assign(o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125; 返回合并后的数组</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125; 且目标对象自身也会改变</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;, o2 = &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;, o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;, obj = <span class="built_in">Object</span>.assign(&#123;&#125;, o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125; 返回合并后的数组</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125; 使用空数组使原数组不改变$.extend同理</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>\$.extend</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;, o2 = &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;, o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;, obj = $.extend(o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125; 返回合并后的数组</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125; 且目标对象自身也会改变</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面看起来assign与\$.extend没有任何区别，都可接收多个参数、都可用空对象实现不改变原值，\$.extend还需要jQuery或者Zepto的支持，那\$.extend存在的意义是啥？答案是\$.extend可以对对象进行深拷贝。</p>
+<h3 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h3><h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1=&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;，obj2=&#123;<span class="string">'b'</span>:&#123;<span class="string">'b1'</span>:<span class="number">22</span>,<span class="string">'b2'</span>:<span class="number">33</span>&#125;&#125;;</span><br><span class="line">$.extend(obj1, obj2);   <span class="comment">// obj1拷贝了obj2的属性</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1)  <span class="comment">// &#123;'a':1,'b'&#123;'b1':22,'b2':33&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1.b.b1)  <span class="comment">// 22</span></span><br><span class="line">obj2.b.b1=<span class="number">44</span>; <span class="comment">// obj2重新赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1.b.b1)  <span class="comment">// 44  obj1.b仅拷贝了对象的指引，所以受原obj2的影响</span></span><br></pre></td></tr></table></figure>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1=&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;, obj2=&#123;<span class="string">'b'</span>:&#123;<span class="string">'b1'</span>:<span class="number">22</span>,<span class="string">'b2'</span>:<span class="number">33</span>&#125;&#125;;</span><br><span class="line">$.extend(<span class="literal">true</span>,obj1, obj2); <span class="comment">// 第一个参数设为true表示深拷贝</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1) <span class="comment">// &#123;'a':1,'b'&#123;'b1':22,'b2':33&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1.b.b1)  <span class="comment">// 22</span></span><br><span class="line">obj2.b.b1=<span class="number">44</span>; <span class="comment">// obj2重新赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1.b.b1)  <span class="comment">// 44  obj1.b仅拷贝了对象的指引，所以受原obj2的影响</span></span><br></pre></td></tr></table></figure>
+<p>如果在单层次的对象里，使用浅拷贝就足够了，但是如果有多层次的对象，浅拷贝只会拷贝引用，就形成了依赖，就得考虑使用深拷贝。另外数组都是深拷贝。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/Fabulous1111/article/details/78700922" target="_blank" rel="noopener">原生ajax请求及readyState的几种状态</a><br><a href="https://www.cnblogs.com/xingxiangyi/p/6416468.html" target="_blank" rel="noopener">js中数组的合并和对象的合并</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/激活汉化JetBrains/" rel="next" title="激活汉化JetBrains">
+                <i class="fa fa-chevron-left"></i> 激活汉化JetBrains
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/28/Ubuntu安装/" rel="prev" title="Ubuntu安装">
+                Ubuntu安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">TENCHIANG</p>
+              <p class="site-description motion-element" itemprop="description">个人的笔记</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原生ajax请求写法"><span class="nav-number">1.</span> <span class="nav-text">原生ajax请求写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest对象的属性"><span class="nav-number">1.1.</span> <span class="nav-text">XMLHttpRequest对象的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onreadystatechange"><span class="nav-number">1.1.1.</span> <span class="nav-text">onreadystatechange</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#readyState"><span class="nav-number">1.1.2.</span> <span class="nav-text">readyState</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#status"><span class="nav-number">1.1.3.</span> <span class="nav-text">status</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步ajax"><span class="nav-number">2.</span> <span class="nav-text">异步ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域问题"><span class="nav-number">3.</span> <span class="nav-text">跨域问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组与对象的合并"><span class="nav-number">4.</span> <span class="nav-text">数组与对象的合并</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">4.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">4.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浅拷贝与深拷贝"><span class="nav-number">4.3.</span> <span class="nav-text">浅拷贝与深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浅拷贝"><span class="nav-number">4.3.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深拷贝"><span class="nav-number">4.3.2.</span> <span class="nav-text">深拷贝</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TENCHIANG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
