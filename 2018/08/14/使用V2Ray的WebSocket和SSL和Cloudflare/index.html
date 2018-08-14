@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="V2Ray,WebSocket," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么要使用v2ray?ss/ssr 支持全平台 不太稳定goflyway 不支持全平台 稳定v2ray 全平台 稳定  VPSDebian x64 &amp;gt;=8  CentOS x64 &amp;gt;= 7  尽量是KVM，OpenVZ(OVZ)也行 SSH自动登陆 服务端修改 /etc/ssh/sshd_config 12345GSSAPIAuthentication noRSAAuthentica">
+<meta name="keywords" content="V2Ray,WebSocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 V2Ray 的 WebSocket+SSL 传输协议 + Cloudflare">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/使用V2Ray的WebSocket和SSL和Cloudflare/index.html">
+<meta property="og:site_name" content="TENCHIANG&#39;s blog">
+<meta property="og:description" content="为什么要使用v2ray?ss/ssr 支持全平台 不太稳定goflyway 不支持全平台 稳定v2ray 全平台 稳定  VPSDebian x64 &amp;gt;=8  CentOS x64 &amp;gt;= 7  尽量是KVM，OpenVZ(OVZ)也行 SSH自动登陆 服务端修改 /etc/ssh/sshd_config 12345GSSAPIAuthentication noRSAAuthentica">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-14T09:08:31.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 V2Ray 的 WebSocket+SSL 传输协议 + Cloudflare">
+<meta name="twitter:description" content="为什么要使用v2ray?ss/ssr 支持全平台 不太稳定goflyway 不支持全平台 稳定v2ray 全平台 稳定  VPSDebian x64 &amp;gt;=8  CentOS x64 &amp;gt;= 7  尽量是KVM，OpenVZ(OVZ)也行 SSH自动登陆 服务端修改 /etc/ssh/sshd_config 12345GSSAPIAuthentication noRSAAuthentica">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/14/使用V2Ray的WebSocket和SSL和Cloudflare/"/>
+
+
+
+
+
+  <title>使用 V2Ray 的 WebSocket+SSL 传输协议 + Cloudflare | TENCHIANG's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TENCHIANG's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/使用V2Ray的WebSocket和SSL和Cloudflare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TENCHIANG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TENCHIANG's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用 V2Ray 的 WebSocket+SSL 传输协议 + Cloudflare</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T00:00:00+08:00">
+                2018-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么要使用v2ray"><a href="#为什么要使用v2ray" class="headerlink" title="为什么要使用v2ray?"></a>为什么要使用v2ray?</h2><h3 id="ss-ssr"><a href="#ss-ssr" class="headerlink" title="ss/ssr"></a>ss/ssr</h3><ul>
+<li>支持全平台</li>
+<li>不太稳定<h3 id="goflyway"><a href="#goflyway" class="headerlink" title="goflyway"></a>goflyway</h3></li>
+<li>不支持全平台</li>
+<li>稳定<h3 id="v2ray"><a href="#v2ray" class="headerlink" title="v2ray"></a>v2ray</h3></li>
+<li>全平台</li>
+<li>稳定</li>
+</ul>
+<h2 id="VPS"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</h2><pre><code>Debian x64 &gt;=8 
+CentOS x64 &gt;= 7 
+尽量是KVM，OpenVZ(OVZ)也行
+</code></pre><h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><h3 id="自动登陆"><a href="#自动登陆" class="headerlink" title="自动登陆"></a>自动登陆</h3><ul>
+<li><p>服务端修改 /etc/ssh/sshd_config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GSSAPIAuthentication no</span><br><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务 <code>service sshd restart</code></p>
+</li>
+<li>客户端生成公钥 <code>ssh-keygen -t rsa</code></li>
+<li>拷贝客户端的公钥至服务端<code>ssh-copy-id root@server</code></li>
+</ul>
+<h3 id="持久化连接"><a href="#持久化连接" class="headerlink" title="持久化连接"></a>持久化连接</h3><ul>
+<li>服务端修改/etc/ssh/ssh_config<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">	ServerAliveInterval 300</span><br><span class="line">	ServerAliveCountMax 2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="长连接-多条连接共享-DNS速度优化等"><a href="#长连接-多条连接共享-DNS速度优化等" class="headerlink" title="长连接 多条连接共享 DNS速度优化等"></a>长连接 多条连接共享 DNS速度优化等</h3><p><a href="https://baike.baidu.com/item/ssh/10407#9_9" target="_blank" rel="noopener">https://baike.baidu.com/item/ssh/10407#9_9</a></p>
+<h3 id="恢复现场"><a href="#恢复现场" class="headerlink" title="恢复现场"></a>恢复现场</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">screen</span><br><span class="line">screen -ls</span><br><span class="line">screen -r &lt;id&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="开启BBR（另kcptun双边加速耗流量-finalspeed）"><a href="#开启BBR（另kcptun双边加速耗流量-finalspeed）" class="headerlink" title="开启BBR（另kcptun双边加速耗流量 finalspeed）"></a>开启BBR（另kcptun双边加速耗流量 finalspeed）</h3><h4 id="KVM"><a href="#KVM" class="headerlink" title="KVM"></a>KVM</h4><ul>
+<li>wget -N –no-check-certificate <a href="https://softs.loan/Bash/bbr.sh" target="_blank" rel="noopener">https://softs.loan/Bash/bbr.sh</a> &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh</li>
+<li>wget -N –no-check-certificate <a href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/bbr.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/bbr.sh</a> &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh</li>
+</ul>
+<h4 id="OVZ（bbr魔改版）"><a href="#OVZ（bbr魔改版）" class="headerlink" title="OVZ（bbr魔改版）"></a>OVZ（bbr魔改版）</h4><ul>
+<li>lld &gt;= v2.14 </li>
+<li>tun/tap enable </li>
+<li>安装lkl <a href="https://github.com/tcp-nanqinlang/lkl-haproxy/releases/latest" target="_blank" rel="noopener">https://github.com/tcp-nanqinlang/lkl-haproxy/releases/latest</a></li>
+</ul>
+<h4 id="测试是否开启bbr"><a href="#测试是否开启bbr" class="headerlink" title="测试是否开启bbr"></a>测试是否开启bbr</h4><p><code>lsmod | grep bbr</code></p>
+<h2 id="免费域名"><a href="#免费域名" class="headerlink" title="免费域名"></a>免费域名</h2><p><a href="https://www.freenom.com/zh/index.html" target="_blank" rel="noopener">https://www.freenom.com/zh/index.html</a></p>
+<h2 id="CDN-SSL"><a href="#CDN-SSL" class="headerlink" title="CDN+SSL"></a>CDN+SSL</h2><ul>
+<li>去freenom将域名设置为CDN提供的DNS Manage Domain-&gt;Management Tools - Nameservers-&gt;Use custom nameservers (enter below)-&gt;Change Nameservers</li>
+<li>A记录指向服务器IP</li>
+<li>确保Crypto为Full且Universal SSL为Active Certificate</li>
+<li>先把云点灰色（DNS only）</li>
+</ul>
+<h2 id="安装v2ray服务端"><a href="#安装v2ray服务端" class="headerlink" title="安装v2ray服务端"></a>安装v2ray服务端</h2><ul>
+<li><code>bash &lt;(curl -s -L https://233blog.com/v2ray.sh)</code></li>
+<li>查看运行状态<code>v2ray status</code>确保 V2Ray 和 Caddy 都在运行</li>
+<li>把CDN的云点亮（DNS and HTTP proxy(CDN)）</li>
+</ul>
+<h2 id="安装v2ray客户端"><a href="#安装v2ray客户端" class="headerlink" title="安装v2ray客户端"></a>安装v2ray客户端</h2><pre><code>先生成二维码 或链接 在二维码的基础上进行客户端的配置
+</code></pre><h3 id="Win"><a href="#Win" class="headerlink" title="Win"></a>Win</h3><pre><code>https://github.com/v2ray/v2ray-core/releases/latest + https://github.com/2dust/v2rayN/releases/latest 开启http+pac代理 1080为ie的默认代理
+</code></pre><h3 id="安卓"><a href="#安卓" class="headerlink" title="安卓"></a>安卓</h3><pre><code>https://github.com/2dust/v2rayNG/releases/latest 分应用 开启mux多路复用（mux快但是容易断流） gcm加密最快
+</code></pre><h3 id="IOS"><a href="#IOS" class="headerlink" title="IOS"></a>IOS</h3><pre><code>Shadowrocket（手动输入） kitsunebi
+</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://doub.io/dbwz-3/" target="_blank" rel="noopener">教你申请.tk/.ml/.cf/.gq/.ga等免费域名</a><br><a href="https://doub.io/goflyway-jc3/" target="_blank" rel="noopener">Goflyway 进阶教程：免费域名+免费CDN+HTTP伪装=被墙的IP继续做代理</a><br><a href="https://233blog.com/post/21/" target="_blank" rel="noopener">使用 V2Ray 的 WebSocket 传输协议 + Cloudflare 拯救被墙的 IP</a><br><a href="https://233blog.com/post/20/" target="_blank" rel="noopener">V2Ray 各平台客户端使用教程</a><br><a href="https://steemit.com/cn/@v2ray/unzev" target="_blank" rel="noopener">翻墙协议的三要素</a><br><a href="https://steemit.com/cn/@v2ray/47wumq" target="_blank" rel="noopener">适合自己的才是最好的</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/V2Ray/" rel="tag"># V2Ray</a>
+          
+            <a href="/tags/WebSocket/" rel="tag"># WebSocket</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/01/JspServlet环境搭建/" rel="next" title="Jsp Servlet 环境搭建">
+                <i class="fa fa-chevron-left"></i> Jsp Servlet 环境搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">TENCHIANG</p>
+              <p class="site-description motion-element" itemprop="description">个人的笔记</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用v2ray"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用v2ray?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ss-ssr"><span class="nav-number">1.1.</span> <span class="nav-text">ss/ssr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#goflyway"><span class="nav-number">1.2.</span> <span class="nav-text">goflyway</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v2ray"><span class="nav-number">1.3.</span> <span class="nav-text">v2ray</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPS"><span class="nav-number">2.</span> <span class="nav-text">VPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-number">3.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自动登陆"><span class="nav-number">3.1.</span> <span class="nav-text">自动登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化连接"><span class="nav-number">3.2.</span> <span class="nav-text">持久化连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长连接-多条连接共享-DNS速度优化等"><span class="nav-number">3.3.</span> <span class="nav-text">长连接 多条连接共享 DNS速度优化等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复现场"><span class="nav-number">3.4.</span> <span class="nav-text">恢复现场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启BBR（另kcptun双边加速耗流量-finalspeed）"><span class="nav-number">3.5.</span> <span class="nav-text">开启BBR（另kcptun双边加速耗流量 finalspeed）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#KVM"><span class="nav-number">3.5.1.</span> <span class="nav-text">KVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OVZ（bbr魔改版）"><span class="nav-number">3.5.2.</span> <span class="nav-text">OVZ（bbr魔改版）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试是否开启bbr"><span class="nav-number">3.5.3.</span> <span class="nav-text">测试是否开启bbr</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#免费域名"><span class="nav-number">4.</span> <span class="nav-text">免费域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN-SSL"><span class="nav-number">5.</span> <span class="nav-text">CDN+SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装v2ray服务端"><span class="nav-number">6.</span> <span class="nav-text">安装v2ray服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装v2ray客户端"><span class="nav-number">7.</span> <span class="nav-text">安装v2ray客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Win"><span class="nav-number">7.1.</span> <span class="nav-text">Win</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安卓"><span class="nav-number">7.2.</span> <span class="nav-text">安卓</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS"><span class="nav-number">7.3.</span> <span class="nav-text">IOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">8.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TENCHIANG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
