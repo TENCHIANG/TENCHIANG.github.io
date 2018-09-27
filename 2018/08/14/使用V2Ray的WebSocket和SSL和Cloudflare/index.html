@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="TENCHIANG&#39;s blog">
 <meta property="og:description" content="为什么要使用v2ray?ss/ssr 支持全平台 不太稳定  goflyway 不支持全平台 稳定  v2ray 全平台 稳定  VPSDebian x64 &amp;gt;=8CentOS x64 &amp;gt;= 7尽量是KVM，OpenVZ(OVZ)也行 SSH自动登陆 服务端修改 /etc/ssh/sshd_config 12345GSSAPIAuthentication noRSAAuthentica">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-14T09:36:04.026Z">
+<meta property="og:updated_time" content="2018-09-27T01:13:33.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 V2Ray 的 WebSocket+SSL 传输协议 + Cloudflare">
 <meta name="twitter:description" content="为什么要使用v2ray?ss/ssr 支持全平台 不太稳定  goflyway 不支持全平台 稳定  v2ray 全平台 稳定  VPSDebian x64 &amp;gt;=8CentOS x64 &amp;gt;= 7尽量是KVM，OpenVZ(OVZ)也行 SSH自动登陆 服务端修改 /etc/ssh/sshd_config 12345GSSAPIAuthentication noRSAAuthentica">
@@ -369,19 +369,22 @@
 <h4 id="测试是否开启bbr"><a href="#测试是否开启bbr" class="headerlink" title="测试是否开启bbr"></a>测试是否开启bbr</h4><p><code>lsmod | grep bbr</code></p>
 <h2 id="免费域名"><a href="#免费域名" class="headerlink" title="免费域名"></a>免费域名</h2><p>去<a href="https://www.freenom.com/zh/index.html" target="_blank" rel="noopener">这里</a>申请免费域名。</p>
 <h2 id="CDN-SSL"><a href="#CDN-SSL" class="headerlink" title="CDN+SSL"></a>CDN+SSL</h2><ul>
-<li>去freenom将域名设置为CDN提供的DNS<br><code>Manage Domain-&gt;Management Tools - Nameservers-&gt;Use custom nameservers (enter below)-&gt;Change Nameservers</code></li>
-<li>A记录指向服务器IP</li>
+<li>去freenom将域名设置为CDN提供的DNS，如<code>donna.ns.cloudflare.com</code><br><code>Manage Domain-&gt;Management Tools - Nameservers-&gt;Use custom nameservers (enter below)-&gt;Change Nameservers</code>，注意不要动域名的A记录或CNAME记录等因为这就是使用了自定义DNS而不是使用Cloudflare提供的域名服务器</li>
+<li>Cloudflare的A记录指向服务器IP（注意还要把@和www也指向vps，因为免费域名有很多限制不能闲置，注意多关注注册的邮箱以便接收信息）</li>
 <li>确保Crypto为Full且Universal SSL为Active Certificate</li>
 <li>先把云点灰色（DNS only）</li>
 </ul>
+<blockquote>
+<p>使用CDN的原理：IP被ban，通过CDN代为访问VPS，此外cdn还可以作为快速的https，访问cdn是https的，cdn再通过默认的http访问web服务器。</p>
+</blockquote>
 <h2 id="安装v2ray服务端"><a href="#安装v2ray服务端" class="headerlink" title="安装v2ray服务端"></a>安装v2ray服务端</h2><ul>
 <li>一键安装脚本<code>bash &lt;(curl -s -L https://233blog.com/v2ray.sh)</code></li>
 <li>查看运行状态<code>v2ray status</code>确保 V2Ray 和 Caddy 都在运行</li>
 <li>把CDN的云点亮（DNS and HTTP proxy(CDN)）</li>
 </ul>
-<h2 id="安装v2ray客户端"><a href="#安装v2ray客户端" class="headerlink" title="安装v2ray客户端"></a>安装v2ray客户端</h2><p>先生成二维码 或链接 在二维码的基础上进行客户端的配置</p>
+<h2 id="安装v2ray客户端"><a href="#安装v2ray客户端" class="headerlink" title="安装v2ray客户端"></a>安装v2ray客户端</h2><p>先生成二维码 或链接 在二维码的基础上进行客户端的配置，最好再把客户端的DNS设置为Cloudflare的如<code>80.80.80.80</code></p>
 <h3 id="Win"><a href="#Win" class="headerlink" title="Win"></a>Win</h3><p><a href="https://github.com/v2ray/v2ray-core/releases/latest" target="_blank" rel="noopener">v2ray-core</a> + <a href="https://github.com/2dust/v2rayN/releases/latest" target="_blank" rel="noopener">v2rayN</a> 开启http+pac代理 1080为ie的默认代理</p>
-<h3 id="安卓"><a href="#安卓" class="headerlink" title="安卓"></a>安卓</h3><p><a href="https://github.com/2dust/v2rayNG/releases/latest" target="_blank" rel="noopener">v2rayNG</a> 分应用</p>
+<h3 id="安卓"><a href="#安卓" class="headerlink" title="安卓"></a>安卓</h3><p><a href="https://github.com/2dust/v2rayNG/releases/latest" target="_blank" rel="noopener">v2rayNG</a> 分应用代理</p>
 <h3 id="IOS"><a href="#IOS" class="headerlink" title="IOS"></a>IOS</h3><ul>
 <li>Shadowrocket（需要手动输入参数）</li>
 <li>kitsunebi（Shadowrocket的v2ray专制版）</li>
